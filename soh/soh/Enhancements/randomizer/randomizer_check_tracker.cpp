@@ -58,6 +58,8 @@ bool showWeirdEgg;
 bool showGerudoCard;
 bool showOverworldPots;
 bool showDungeonPots;
+bool showOverworldCrates;
+bool showDungeonCrates;
 bool showFrogSongRupees;
 bool showFairies;
 bool showStartingMapsCompasses;
@@ -1230,11 +1232,32 @@ void LoadSettings() {
                 showDungeonPots = false;
                 break;
         }
+
+        switch (OTRGlobals::Instance->gRandomizer->GetRandoSettingValue(RSK_SHUFFLE_CRATES)) {
+            case RO_SHUFFLE_CRATES_ALL:
+                showOverworldCrates = true;
+                showDungeonCrates = true;
+                break;
+            case RO_SHUFFLE_CRATES_OVERWORLD:
+                showOverworldCrates = true;
+                showDungeonCrates = false;
+                break;
+            case RO_SHUFFLE_CRATES_DUNGEONS:
+                showOverworldCrates = false;
+                showDungeonCrates = true;
+                break;
+            default:
+                showOverworldCrates = false;
+                showDungeonCrates = false;
+                break;
+        }
     } else { // Vanilla
         showOverworldTokens = true;
         showDungeonTokens = true;
         showOverworldPots = false;
         showDungeonPots = false;
+        showOverworldCrates = false;
+        showDungeonCrates = false;
     }
 
     fortressFast = false;
@@ -1315,6 +1338,17 @@ bool IsCheckShuffled(RandomizerCheck rc) {
             (loc->GetRCType() != RCTYPE_POT ||
                 (showOverworldPots && RandomizerCheckObjects::AreaIsOverworld(loc->GetArea())) ||
                 (showDungeonPots && RandomizerCheckObjects::AreaIsDungeon(loc->GetArea()))) &&
+            (loc->GetRCType() != RCTYPE_CRATE ||
+                (showOverworldCrates && RandomizerCheckObjects::AreaIsOverworld(loc->GetArea())) ||
+                (showDungeonCrates && RandomizerCheckObjects::AreaIsDungeon(loc->GetArea()))) &&
+            (loc->GetRCType() != RCTYPE_NLCRATE ||
+                (showOverworldCrates && RandomizerCheckObjects::AreaIsOverworld(loc->GetArea()) &&
+                 OTRGlobals::Instance->gRandomizer->GetRandoSettingValue(RSK_LOGIC_RULES) ==
+                     RO_LOGIC_NO_LOGIC) ||
+                (showDungeonCrates && RandomizerCheckObjects::AreaIsDungeon(loc->GetArea()))) &&
+            (loc->GetRCType() != RCTYPE_SMALL_CRATE ||
+                (showOverworldCrates && RandomizerCheckObjects::AreaIsOverworld(loc->GetArea())) ||
+                (showDungeonCrates && RandomizerCheckObjects::AreaIsDungeon(loc->GetArea()))) &&
             (loc->GetRCType() != RCTYPE_COW || showCows) &&
             (loc->GetRCType() != RCTYPE_FISH || OTRGlobals::Instance->gRandoContext->GetFishsanity()->GetFishLocationIncluded(loc)) &&
             (loc->GetRCType() != RCTYPE_FREESTANDING ||
