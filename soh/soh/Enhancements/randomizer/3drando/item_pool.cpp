@@ -721,6 +721,7 @@ void GenerateItemPool() {
                              ctx->GetOption(RSK_SHUFFLE_POTS).Is(RO_SHUFFLE_POTS_ALL);
   bool dungeonPotsActive = ctx->GetOption(RSK_SHUFFLE_POTS).Is(RO_SHUFFLE_POTS_DUNGEONS) ||
                            ctx->GetOption(RSK_SHUFFLE_POTS).Is(RO_SHUFFLE_POTS_ALL);
+  
   PlaceItemsForType(RCTYPE_POT, overworldPotsActive, dungeonPotsActive);
 
   // Shuffle Crates
@@ -734,6 +735,12 @@ void GenerateItemPool() {
   PlaceItemsForType(RCTYPE_CRATE, overworldCratesActive, dungeonCratesActive);
   PlaceItemsForType(RCTYPE_NLCRATE, overworldNLCratesActive, dungeonCratesActive);
   PlaceItemsForType(RCTYPE_SMALL_CRATE, overworldCratesActive, dungeonCratesActive);
+  
+  PlaceItemsForType(RCTYPE_POT, overworldPotsActive, dungeonPotsActive, false);
+
+  // Shuffle Trees (Add more options for tree categories).
+  bool treesActive = ctx->GetOption(RSK_SHUFFLE_TREES).Is(RO_SHUFFLE_TREES_ON);
+  PlaceItemsForType(RCTYPE_TREE, treesActive, false, false);
   
   auto fsMode = ctx->GetOption(RSK_FISHSANITY);
   if (fsMode.IsNot(RO_FISHSANITY_OFF)) {

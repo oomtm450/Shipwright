@@ -21,7 +21,7 @@ void RegionTable_Init_CastleGrounds() {
     }, {
         //Locations
         LOCATION(RC_HC_MALON_EGG,                        true),
-        LOCATION(RC_HC_GS_TREE,                          logic->IsChild && logic->CanAttack()),
+        LOCATION(RC_HC_GS_TREE,                          logic->IsChild && logic->CanAttack() && logic->CanBonkTrees()),
         LOCATION(RC_HC_MALON_GOSSIP_STONE_FAIRY,         logic->CallGossipFairy()),
         LOCATION(RC_HC_MALON_GOSSIP_STONE_FAIRY_BIG,     logic->CanUse(RG_SONG_OF_STORMS)),
         LOCATION(RC_HC_ROCK_WALL_GOSSIP_STONE_FAIRY,     logic->CallGossipFairy()),
@@ -30,6 +30,14 @@ void RegionTable_Init_CastleGrounds() {
         LOCATION(RC_HC_ROCK_WALL_GOSSIP_STONE,           true),
         LOCATION(RC_HC_GRASS_1,                          logic->CanCutShrubs()),
         LOCATION(RC_HC_GRASS_2,                          logic->CanCutShrubs()),
+        LOCATION(RC_HC_GROTTO_TREE, logic->IsChild && logic->CanBonkTrees()),
+        LOCATION(RC_HC_SKULLTULA_TREE, logic->IsChild && logic->CanBonkTrees()),
+        LOCATION(RC_HC_NEAR_GUARDS_TREE, logic->IsChild && logic->CanBonkTrees()),
+        LOCATION(RC_HC_NEAR_GUARDS_TREE_1, logic->IsChild && logic->CanBonkTrees()),
+        LOCATION(RC_HC_NEAR_GUARDS_TREE_2, logic->IsChild && logic->CanBonkTrees()),
+        LOCATION(RC_HC_NEAR_GUARDS_TREE_3, logic->IsChild && logic->CanBonkTrees()),
+        LOCATION(RC_HC_NEAR_GUARDS_TREE_4, logic->IsChild && logic->CanBonkTrees()),
+        LOCATION(RC_HC_NEAR_GUARDS_TREE_5, logic->IsChild && logic->CanBonkTrees()),
     }, {
         //Exits
         Entrance(RR_CASTLE_GROUNDS,          []{return true;}),

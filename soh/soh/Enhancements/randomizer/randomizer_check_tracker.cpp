@@ -62,6 +62,7 @@ bool showOverworldCrates;
 bool showDungeonCrates;
 bool showOverworldGrass;
 bool showDungeonGrass;
+bool showTrees;
 bool showFrogSongRupees;
 bool showFairies;
 bool showStartingMapsCompasses;
@@ -1194,7 +1195,7 @@ void LoadSettings() {
         : false;
     showLinksPocket = IS_RANDO ? // don't show Link's Pocket if not randomizer, or if rando and pocket is disabled
         OTRGlobals::Instance->gRandomizer->GetRandoSettingValue(RSK_LINKS_POCKET) != RO_LINKS_POCKET_NOTHING
-        :false;
+        : false;
 
     if (IS_RANDO) {
         switch (OTRGlobals::Instance->gRandomizer->GetRandoSettingValue(RSK_SHUFFLE_TOKENS)) {
@@ -1234,7 +1235,7 @@ void LoadSettings() {
                 showDungeonPots = false;
                 break;
         }
-
+        
         switch (OTRGlobals::Instance->gRandomizer->GetRandoSettingValue(RSK_SHUFFLE_CRATES)) {
             case RO_SHUFFLE_CRATES_ALL:
                 showOverworldCrates = true;
@@ -1272,6 +1273,10 @@ void LoadSettings() {
                 showDungeonGrass = false;
                 break;
         }
+
+        showTrees = IS_RANDO ?
+            OTRGlobals::Instance->gRandomizer->GetRandoSettingValue(RSK_SHUFFLE_TREES) == RO_GENERIC_YES
+            : false;
     } else { // Vanilla
         showOverworldTokens = true;
         showDungeonTokens = true;
@@ -1281,6 +1286,7 @@ void LoadSettings() {
         showDungeonCrates = false;
         showOverworldGrass = false;
         showDungeonGrass = false;
+        showTrees = false;
     }
 
     fortressFast = false;
@@ -1375,6 +1381,7 @@ bool IsCheckShuffled(RandomizerCheck rc) {
             (loc->GetRCType() != RCTYPE_GRASS ||
                 (showOverworldGrass && RandomizerCheckObjects::AreaIsOverworld(loc->GetArea())) ||
                 (showDungeonGrass && RandomizerCheckObjects::AreaIsDungeon(loc->GetArea()))) &&
+            (loc->GetRCType() != RCTYPE_TREE || showTrees) &&
             (loc->GetRCType() != RCTYPE_COW || showCows) &&
             (loc->GetRCType() != RCTYPE_FISH || OTRGlobals::Instance->gRandoContext->GetFishsanity()->GetFishLocationIncluded(loc)) &&
             (loc->GetRCType() != RCTYPE_FREESTANDING ||

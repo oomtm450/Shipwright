@@ -84,6 +84,17 @@ std::vector<RandomizerCheck> Rando::StaticData::GetOverworldGrassLocations() {
     return overworldGrassLocations;
 }
 
+std::vector<RandomizerCheck> Rando::StaticData::GetTreeLocations() {
+    std::vector<RandomizerCheck> treeLocations = {};
+    for (Location& location : locationTable) {
+        if (location.GetRCType() == RCTYPE_TREE && location.IsOverworld() &&
+            location.GetRandomizerCheck() != RC_UNKNOWN_CHECK) {
+            treeLocations.push_back(location.GetRandomizerCheck());
+        }
+    }
+    return treeLocations;
+}
+
 std::vector<RandomizerCheck> Rando::StaticData::GetStaticHintLocations() {
     std::vector<RandomizerCheck> staticHintLocations = {};
     for (Location& location : locationTable) {
@@ -159,6 +170,7 @@ std::vector<RandomizerCheck> Rando::StaticData::GetOverworldLocations() {
             location.GetRCType() != RCTYPE_NLCRATE && // Same as fish
             location.GetRCType() != RCTYPE_SMALL_CRATE && // Same as fish
             location.GetRCType() != RCTYPE_GRASS && // Same as fish
+            location.GetRCType() != RCTYPE_TREE &&  // Same as fish
             location.GetRCType() != RCTYPE_CHEST_GAME && //this is supposed to be excluded
             (ctx->GetOption(RSK_SHUFFLE_ADULT_TRADE) || location.GetRCType() != RCTYPE_ADULT_TRADE) && //trade is handled elsewhere in location pool
             location.GetRCType() != RCTYPE_STATIC_HINT && 

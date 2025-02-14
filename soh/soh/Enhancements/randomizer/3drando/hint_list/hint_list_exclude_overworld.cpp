@@ -1953,7 +1953,7 @@ void StaticData::HintTable_Init_Exclude_Overworld() {
     hintTextTable[RHT_LW_DEKU_SCRUB_GROTTO_SUN_FAIRY] = HintText(CustomMessage("They say that #calling the sun for scrubs in the Lost Woods# reveals #[[1]]#.", { QM_RED, QM_GREEN }));
 
     hintTextTable[RHT_GRAVEYARD_ROYAL_FAMILYS_TOMB_SUN_FAIRY] = HintText(CustomMessage("They say that #calling the sun in a royal tomb# reveals #[[1]]#.", { QM_RED, QM_GREEN }));
-
+   
     hintTextTable[RHT_CRATE_GERUDO_VALLEY] = HintText(CustomMessage("They say that a #crate in Gerudo Valley# contains #[[1]]#.",
                             /*german*/ "",
                             /*french*/ "Selon moi, une #caisse dans une vallée# a #[[1]]#.", { QM_RED, QM_GREEN }));
@@ -2014,5 +2014,29 @@ void StaticData::HintTable_Init_Exclude_Overworld() {
 
     hintTextTable[RHT_GROTTO_GRASS] = HintText(CustomMessage("They say that #cutting some grass in a grotto# reveals #[[1]]#.", { QM_RED, QM_GREEN }));
 
+    hintTextTable[RHT_TREE_HYRULE_FIELD] =
+        HintText(CustomMessage("They say that a #tree in Hyrule Field# contains #[[1]]#.",
+                               /*german*/ "",
+                               /*french*/ "", { QM_RED, QM_GREEN }));
+    hintTextTable[RHT_TREE_MARKET] =
+        HintText(CustomMessage("They say that a #tree in Hyrule Market# contains #[[1]]#.",
+                               /*german*/ "",
+                               /*french*/ "", { QM_RED, QM_GREEN }));
+    hintTextTable[RHT_TREE_HYRULE_CASTLE] =
+        HintText(CustomMessage("They say that a #tree in Hyrule Castle# contains #[[1]]#.",
+                               /*german*/ "",
+                               /*french*/ "", { QM_RED, QM_GREEN }));
+    hintTextTable[RHT_TREE_ZORAS_RIVER] =
+        HintText(CustomMessage("They say that a #tree in Zora's River# contains #[[1]]#.",
+                               /*german*/ "",
+                               /*french*/ "", { QM_RED, QM_GREEN }));
+    hintTextTable[RHT_TREE_ZORAS_FOUNTAIN] =
+        HintText(CustomMessage("They say that a #tree in Zora's Fountain# contains #[[1]]#.",
+                               /*german*/ "",
+                               /*french*/ "", { QM_RED, QM_GREEN }));
+    hintTextTable[RHT_TREE_LON_LON_RANCH] =
+        HintText(CustomMessage("They say that a #tree in Lon Lon Ranch# contains #[[1]]#.",
+                               /*german*/ "",
+                               /*french*/ "", { QM_RED, QM_GREEN }));
 }
 }

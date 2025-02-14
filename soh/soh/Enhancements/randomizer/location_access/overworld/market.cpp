@@ -26,6 +26,7 @@ void RegionTable_Init_Market() {
         LOCATION(RC_MARKET_GRASS_6, logic->IsChild && logic->CanCutShrubs()),
         LOCATION(RC_MARKET_GRASS_7, logic->IsChild && logic->CanCutShrubs()),
         LOCATION(RC_MARKET_GRASS_8, logic->IsChild && logic->CanCutShrubs()),
+        LOCATION(RC_MARKET_DAY_TREE, logic->IsChild && logic->CanBonkTrees() && logic->AtDay),
     }, {
         //Exits
         Entrance(RR_MARKET_ENTRANCE,            []{return true;}),

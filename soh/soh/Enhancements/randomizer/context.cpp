@@ -232,6 +232,12 @@ void Context::GenerateLocationPool() {
             }
         }
     }
+
+    if (mOptions[RSK_SHUFFLE_TREES].Is(RO_SHUFFLE_TREES_ON)) {
+        AddLocations(StaticData::GetTreeLocations());
+    }
+
+    AddLocations(StaticData::GetAllDungeonLocations());
 }
 
 void Context::AddExcludedOptions() {
