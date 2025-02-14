@@ -735,12 +735,10 @@ void GenerateItemPool() {
   PlaceItemsForType(RCTYPE_CRATE, overworldCratesActive, dungeonCratesActive);
   PlaceItemsForType(RCTYPE_NLCRATE, overworldNLCratesActive, dungeonCratesActive);
   PlaceItemsForType(RCTYPE_SMALL_CRATE, overworldCratesActive, dungeonCratesActive);
-  
-  PlaceItemsForType(RCTYPE_POT, overworldPotsActive, dungeonPotsActive, false);
 
   // Shuffle Trees (Add more options for tree categories).
   bool treesActive = ctx->GetOption(RSK_SHUFFLE_TREES).Is(RO_SHUFFLE_TREES_ON);
-  PlaceItemsForType(RCTYPE_TREE, treesActive, false, false);
+  PlaceItemsForType(RCTYPE_TREE, treesActive, false);
   
   auto fsMode = ctx->GetOption(RSK_FISHSANITY);
   if (fsMode.IsNot(RO_FISHSANITY_OFF)) {
